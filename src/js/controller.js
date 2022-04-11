@@ -11,13 +11,7 @@ export default class Controller {
     this.main = new Main(this.node, 'main', '', '');
     this.footer = new Footer(this.node, 'footer', 'footer', '');
     this.header.containerLogo.node.onclick = () => {
-      this.main.renderMainPage();
-      this.header.navigation.removePetsClass();
-      this.header.navigation.removeActiveClass();
-      this.header.navigation.addActiveClass(0);
-      this.header.node.classList.remove('our-pets-header');
-      this.header.title.node.classList.remove('our-pets-logo__title');
-      this.header.subtitle.node.classList.remove('our-pets-logo__subtitle');
+      this.main.onNavigate('');
     };
     this.header.navigation.listItems[0].link.node.onclick = () => {
       this.main.onNavigate('');
