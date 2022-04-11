@@ -23,7 +23,7 @@ export default class Controller {
       this.main.onNavigate('');
     };
     this.header.navigation.listItems[1].link.node.onclick = () => {
-      this.main.onNavigate('/our-pets');
+      this.main.onNavigate('our-pets');
     };
     this.main.renderOurPets = () => {
       this.main.removeChildren();
@@ -33,7 +33,6 @@ export default class Controller {
       this.header.node.classList.add('our-pets-header');
       this.header.title.node.classList.add('our-pets-logo__title');
       this.header.subtitle.node.classList.add('our-pets-logo__subtitle');
-      this.main.onNavigate('/our-pets');
       this.friends = new Component(this.main.node, 'section', 'friends', '');
       this.friends.node.id = 'friends';
       this.friendsContainer = new Component(this.friends.node, 'div', 'friends-container', '');

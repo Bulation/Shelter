@@ -49,7 +49,7 @@ export default class Main extends Component {
     this.arrowRight = new Component(this.arrowRightWrapper.node, 'span', 'friends-slider__arrow friends-slider__arrow_right', '');
     this.friendsLink = new Component(this.friendsContainer.node, 'a', 'btn friends__btn', 'Get to know the rest');
     this.friendsLink.node.href = '#';
-    this.friendsLink.node.onclick = () => this.onNavigate('/our-pets');
+    this.friendsLink.node.onclick = () => this.onNavigate('our-pets');
 
     this.help = new Component(this.node, 'section', 'help', '');
     this.help.node.id = 'help';
