@@ -1,0 +1,19 @@
+.about-container {
+  justify-content: center;
+  gap: 120px;
+  padding-top: 80px;
+  padding-bottom: 100px;
+}
+.about__description {
+  padding: 14px 0 14px;
+  color: var(--color-dark-xl);
+  max-width: 430px;
+  font: 400 15px/24px Arial;
+}
+.about__title {
+  max-width: 370px;
+  margin-bottom: 25px;
+}
+.about__text {
+  margin-bottom: 25px;
+}
