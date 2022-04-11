@@ -90,7 +90,7 @@ export default class Main extends Component {
     window.history.pushState(
       {},
       pathname,
-      window.location.origin + pathname,
+      `https://rolling-scopes-school.github.io/bulation-JSFE2022Q1/shelter/${pathname}`,
     );
   }
 }
