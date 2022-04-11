@@ -1,0 +1,53 @@
+.donate {
+  background-color: var(--color-light-l);
+}
+.donate-container {
+  padding-top: 80px;
+  padding-bottom: 100px;
+  align-items: center;
+  gap: 30px;
+  justify-content: center;
+}
+
+.donate__title {
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.donate__text {
+  color: var(--color-dark-l);
+  margin-bottom: 20px;
+  font: 400 15px/17px Georgia;
+  letter-spacing: 0.06em;
+}
+
+.donate__link {
+  max-width: 350px;
+  display: block;
+  position: relative;
+  background-color: var(--color-primary);
+  padding: 10px 15px 10px 60px;
+  border-radius: 9px;
+  margin-bottom: 20px;
+  font: 400 20px/23px Georgia;
+  letter-spacing: 0.06em;
+  color: var(--color-dark-l);
+  &::before {
+    position: absolute;
+    content: '';
+    left: 15px;
+    top: 10px;
+    width: 30px;
+    height: 23px;
+    background: url(../assets/svg/credit-card.svg) no-repeat center;
+  }
+}
+
+.donate__info {
+  font: italic 400 12px/18px Arial;
+  color: var(--color-dark-m);
+}
+
+.donate__description {
+  max-width: 380px;
+}
