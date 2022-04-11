@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  max-width: 1280px;
+  padding: 60px 40px 0;
+  margin: 0 auto;
+}
+.btn {
+  width: fit-content;
+  font: 400 17px/22px Georgia;
+  letter-spacing: 0.06em;
+  background-color: var(--color-primary);
+  padding: 15px 45px;
+  text-align: center;
+  border-radius: 100px;
+  color: var(--color-dark-3xl);
+  &:hover {
+    background-color: var(--color-primary-light);
+  }
+}
+img {
+  display: block;
+}
+a {
+  display: block;
+  text-decoration: none;
+}
+.section-title {
+  color: var(--color-dark-l);
+  font: 400 35px/45px Georgia;
+  letter-spacing: 0.06em;
+}
+h4 {
+  color: var(--color-dark-l);
+  font: 400 20px/23px Georgia;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
