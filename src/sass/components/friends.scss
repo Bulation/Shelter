@@ -15,12 +15,25 @@
 }
 .friends-slider-items {
   display: flex;
+  flex-wrap: wrap;
   gap: 90px;
+  justify-content: space-between;
+}
+.our-pets-friends-slider-items {
+  gap: 40px;
 }
 .friends-slider-pet {
+  max-width: 270px;
+  border-radius: 9px;
   background-color: var(--color-light-s);
   &__img-container, &__name, &__btn {
     margin: 0 auto 30px;
+  }
+  &__img {
+    max-width: 100%;
+    min-height: 270px;
+    object-fit: cover;
+    border-radius: 9px;
   }
   &__btn {
     background-color: var(--color-light-s);

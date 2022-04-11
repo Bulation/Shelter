@@ -28,9 +28,31 @@
     &:hover {
       color: var(--color-light-s);
     }
+    &_active {
+      color: var(--color-light-s);
+      border-bottom: 3px solid var(--color-primary);
+    }
+    &_pets {
+      color: var(--color-dark-l);
+      &:hover {
+        color: var(--color-dark-3xl);
+      }
+    }
+    &_active-pets {
+      color: var(--color-dark-3xl);
+    }
   }
-  &__link_active {
-    color: var(--color-light-s);
-    border-bottom: 3px solid var(--color-primary);
-  }
+}
+
+.our-pets-header {
+  background: var(--color-light-xl);
+  padding-bottom: 30px;
+}
+
+.our-pets-logo__title {
+  color: var(--color-dark-l);
+}
+
+.our-pets-logo__subtitle {
+  color: var(--color-dark-3xl);
 }
