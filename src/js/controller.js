@@ -25,9 +25,13 @@ export default class Controller {
       this.header.navigation.addPetsClass(1);
       this.header.navigation.addActiveClass(1);
       this.header.node.classList.add('our-pets-header');
-      this.header.headerContainer.node.classList.add('our-pets-header-container');
+      this.headerContainer.node.classList.add('our-pets-header-container');
       this.header.title.node.classList.add('our-pets-logo__title');
       this.header.subtitle.node.classList.add('our-pets-logo__subtitle');
+      this.header.navigation.listItems[2].link.node.onclick = () => {
+        this.main.onNavigate('');
+        this.main.onNavigate('#help');
+      };
       this.friends = new Component(this.main.node, 'section', 'friends', '');
       this.friends.node.id = 'friends';
       this.friendsContainer = new Component(this.friends.node, 'div', 'friends-container', '');
