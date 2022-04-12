@@ -20,7 +20,7 @@
   justify-content: space-between;
 }
 .our-pets-friends-slider-items {
-  gap: 40px;
+  gap: 30px 40px;
 }
 .friends-slider-pet {
   max-width: 270px;
@@ -119,4 +119,40 @@
 
 .friends__btn {
   margin: 0 auto;
+}
+
+.friends-pagination-wrapper {
+  color: var(--color-dark-3xl);
+  font: 400 20px/23px Georgia;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.friends-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  &__item {
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 100px;
+    padding-top: 11px;
+    width: 52px;
+    height: 52px;
+    cursor: pointer;
+    &_back {
+      color: var(--color-dark-s);
+      border-color: var(--color-dark-s);
+    }
+    &_active {
+      border: none;
+      background-color: var(--color-primary);
+    }
+    &_up {
+      border-color: var(--color-primary);
+      &:hover {
+        background-color: var(--color-primary-light);
+      }
+    }
+  }
 }

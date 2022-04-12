@@ -46,9 +46,11 @@
 
 .our-pets-header {
   background: var(--color-light-xl);
+}
+.our-pets-header-container {
+  padding-top: 30px;
   padding-bottom: 30px;
 }
-
 .our-pets-logo__title {
   color: var(--color-dark-l);
 }
