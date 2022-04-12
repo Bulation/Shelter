@@ -33,7 +33,7 @@
   letter-spacing: 0.06em;
   color: var(--color-dark-l);
   &:hover {
-    color: var(--color-primary-light);
+    background-color: var(--color-primary-light);
   }
   &::before {
     position: absolute;
