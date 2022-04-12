@@ -25,7 +25,7 @@ export default class Controller {
       this.header.navigation.addPetsClass(1);
       this.header.navigation.addActiveClass(1);
       this.header.node.classList.add('our-pets-header');
-      this.headerContainer.node.classList.add('our-pets-header-container');
+      this.header.headerContainer.node.classList.add('our-pets-header-container');
       this.header.title.node.classList.add('our-pets-logo__title');
       this.header.subtitle.node.classList.add('our-pets-logo__subtitle');
       this.header.navigation.listItems[2].link.node.onclick = () => {
