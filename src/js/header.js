@@ -11,5 +11,7 @@ export default class Header extends Component {
     this.subtitle = new Component(this.containerLogo.node, 'p', 'logo__subtitle', 'Shelter for pets in Boston');
     this.navigation = new Navigation(this.headerContainer.node, 'nav', 'navigation', '', 4, ['About the shelter', 'Our pets', 'Help the shelter', 'Contacts'], ['#index.html', '#', '#help', '#footer']);
     this.navigation.addActiveClass(0);
+    this.burger = new Component(this.headerContainer.node, 'div', 'burger', '');
+    this.burgerItem = new Component(this.burger.node, 'span', 'burger__item', '');
   }
 }
