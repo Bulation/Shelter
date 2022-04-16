@@ -9,17 +9,25 @@ import Charly from '../assets/img/charly.png';
 import Scarlett from '../assets/img/scarlett.png';
 
 export default class Slider extends Component {
-  constructor(parent, tagName, className, content, itemsCount, names, alt) {
+  constructor(parent, tagName, className, content, itemsCount, names, alt, ourPetsClass) {
     super(parent, tagName, className, content);
+    this.names = names;
+    this.alt = alt;
+    this.ourPetsClass = ourPetsClass;
     this.pathToImg = [Katrine, Jennifer, Woody, Sophia, Timmy, Charly, Scarlett, Freddie];
     this.friendsItems = [];
-    for (let i = 0; i < itemsCount; i += 1) {
-      const item = new Component(this.node, 'div', 'friends-slider-pet', '');
+    this.count = itemsCount;
+    this.pushItems(0, this.count);
+  }
+
+  pushItems(start, end) {
+    for (let i = start; i < end; i += 1) {
+      const item = new Component(this.node, 'div', `friends-slider-pet ${this.ourPetsClass}`, '');
       const itemImgWrapper = new Component(item.node, 'div', 'friends-slider-pet__img-container', '');
       const itemImg = new Component(itemImgWrapper.node, 'img', 'friends-slider-pet__img', '');
       itemImg.node.src = this.pathToImg[i];
-      itemImg.node.alt = alt[i];
-      const title = new Component(item.node, 'h4', 'friends-slider-pet__name', names[i]);
+      itemImg.node.alt = this.alt[i];
+      const title = new Component(item.node, 'h4', 'friends-slider-pet__name', this.names[i]);
       const link = new Component(item.node, 'a', 'btn friends-slider-pet__btn', 'Learn more');
       this.friendsItems.push(item);
     }
