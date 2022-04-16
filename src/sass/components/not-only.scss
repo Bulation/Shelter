@@ -19,12 +19,22 @@
     font: 400 44px/57px Georgia;
     color: var(--color-light-xl);
     margin-bottom: 42px;
+    @media screen and (max-width: 600px) {
+      font: 400 25px/32px Georgia;
+      letter-spacing: 0.06em;
+      text-align: center;
+      max-width: 260px;
+      margin: 0 auto 42px;
+    }
   }
   &__text {
     text-align: left;
     font: 400 15px/24px Arial;
     color: var(--color-dark-s);
     margin-bottom: 42px;
+    @media screen and (max-width: 600px) {
+      text-align: center;
+    }
   }
   &__img-container {
     margin-left: auto;
@@ -34,16 +44,25 @@
     max-width: 100%;
     height: auto;
     @media screen and (max-width: 1024px) {
-      max-width: 81%;
+      max-width: 81.5%;
+    }
+    @media screen and (max-width: 600px) {
+      max-width: 86.6%;
     }
   }
 }
 .not-only-container {
   justify-content: space-between;
   gap: 42px;
+  padding-bottom: 0;
   @media screen and (max-width: 1024px) {
     padding-top: 60px;
     flex-wrap: wrap;
     gap: 100px;
+  }
+  @media screen and (max-width: 600px) {
+    padding-top: 60px;
+    flex-wrap: wrap;
+    gap: 105px;
   }
 }

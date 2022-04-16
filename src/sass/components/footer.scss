@@ -4,20 +4,50 @@
 .footer-container {
   padding-top: 40px;
   justify-content: space-between;
+  flex-wrap: wrap;
+  @media screen and (max-width: 1024px) {
+    padding-top: 30px;
+    justify-content: space-around;
+    padding-bottom: 0;
+  }
 }
 .footer__title {
   max-width: 280px;
   color: var(--color-light-xl);
   margin-top: 16px;
+  @media screen and (max-width: 1024px) {
+    margin: 0;
+  }
+}
+.footer-pet {
+  @media screen and (max-width: 1024px) {
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 0 20px;
+  }
+  &__img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 .connection, .address {
   padding-bottom: 60px;
+  @media screen and (max-width: 1024px) {
+    padding-bottom: 65px;
+  }
+  @media screen and (max-width: 600px) {
+    padding-bottom: 40px;
+  }
 }
 .connection__title {
   margin-bottom: 40px;
 }
 .address__title {
   margin-bottom: 34px;
+  @media screen and (max-width: 600px) {
+    margin-left: 10px;
+  }
 }
 .footer__link {
   color: var(--color-primary);
@@ -33,6 +63,12 @@
     height: 32px;
     left: 0;
     top: 0;
+    @media screen and (max-width: 600px) {
+      left: 13px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    padding-left: 75px;
   }
 }
 .contacts-container__mail {
@@ -60,6 +96,9 @@
     width: 22px;
     height: 32px;
     background: url(../assets/svg/pin.svg) no-repeat center;
+  }
+  @media screen and (max-width: 600px) {
+    padding-top: 7px;
   }
 }
 

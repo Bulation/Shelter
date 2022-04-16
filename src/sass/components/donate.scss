@@ -7,11 +7,22 @@
   align-items: center;
   gap: 30px;
   justify-content: center;
+  flex-wrap: wrap;
+  @media screen and (max-width: 1024px) {
+    gap: 60px;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 42px 10px;
+    gap: 42px;
+  }
 }
 
 .donate__title {
   max-width: 300px;
   margin-bottom: 20px;
+  @media screen and (max-width: 600px) {
+    max-width: 220px;
+  }
 }
 
 .donate__text {
@@ -19,6 +30,11 @@
   margin-bottom: 20px;
   font: 400 15px/17px Georgia;
   letter-spacing: 0.06em;
+  @media screen and (max-width: 600px) {
+    line-height: 24px;
+    letter-spacing: 0px;
+    margin: 0 13px 20px;
+  }
 }
 
 .donate__link {
@@ -44,13 +60,35 @@
     height: 23px;
     background: url(../assets/svg/credit-card.svg) no-repeat center;
   }
+  @media screen and (max-width: 600px) {
+    font: 400 15px/17px Georgia;
+    padding: 13px 15px 13px 60px;
+    margin: 0 10px 20px 9px;
+  }
 }
 
 .donate__info {
   font: italic 400 12px/18px Arial;
   color: var(--color-dark-m);
+  @media screen and (max-width: 600px) {
+    margin: 0 10px;
+    text-align: justify;
+  }
 }
 
 .donate__description {
   max-width: 380px;
+  @media screen and (max-width: 1024px) {
+    order: -1;
+  }
+}
+
+.donate-pet {
+  @media screen and (max-width: 600px) {
+    padding: 0 20px;
+  }
+  &__img {
+    max-width: 100%;
+    height: auto;
+  }
 }

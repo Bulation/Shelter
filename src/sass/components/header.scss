@@ -4,8 +4,12 @@
 .header-container {
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 0;
   @media screen and (max-width: 1024px) {
     padding-top: 30px;
+  }
+  @media screen and (max-width: 600px) {
+    padding-right: 55px;
   }
 }
 .logo__title {
