@@ -27,7 +27,11 @@ export default class Header extends Component {
         this.onBurger();
       }
     };
-    this.containerLogo.node.onclick = () => this.onBurger();
+    this.containerLogo.node.onclick = () => {
+      if (this.burger.node.classList.contains('burger_active')) {
+        this.onBurger();
+      }
+    }
     window.addEventListener('resize', () => {
       if (document.documentElement.clientWidth >= 768 && this.burger.node.classList.contains('burger_active')) {
         this.onBurger();
