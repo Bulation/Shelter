@@ -6,21 +6,19 @@ import Slider from './slider';
 export default class OurPetsPage {
   constructor(node) {
     this.node = node;
-    this.header = new Header(this.node, 'header', 'header', '');
+    this.header = new Header(this.node, 'header', 'header', '', 'our-pets-navigation');
     this.header.navigation.addPetsClass(1);
     this.header.navigation.addActiveClass(1);
     this.header.node.classList.add('our-pets-header');
     this.header.headerContainer.node.classList.add('our-pets-header-container');
     this.header.title.node.classList.add('our-pets-logo__title');
     this.header.subtitle.node.classList.add('our-pets-logo__subtitle');
-    this.header.containerLogo.node.onclick = () => {
-      this.onMainPage('/');
-    };
+    this.header.containerLogo.node.href = '/';
     this.header.navigation.listItems[0].link.node.onclick = () => {
-      this.onMainPage('/');
+      this.onMainPage('');
     };
     this.header.navigation.listItems[2].link.node.onclick = () => {
-      this.onMainPage('/#help');
+      this.onMainPage('#help');
     };
     this.main = new Component(this.node, 'main', '', '');
     this.friends = new Component(this.main.node, 'section', 'friends', '');

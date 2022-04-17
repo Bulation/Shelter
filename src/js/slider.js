@@ -18,6 +18,28 @@ export default class Slider extends Component {
     this.friendsItems = [];
     this.count = itemsCount;
     this.pushItems(0, this.count);
+    window.addEventListener('resize', () => {
+      if (document.documentElement.clientWidth <= 768 && window.location.pathname.endsWith('our-pets')
+        && this.friendsItems.length === 8) {
+        const items = this.friendsItems;
+        items[items.length - 2].destroy();
+        items[items.length - 1].destroy();
+        this.friendsItems = this.friendsItems.slice(0, -2);
+      }
+      if (document.documentElement.clientWidth <= 600 && window.location.pathname.endsWith('our-pets') && this.friendsItems.length === 6) {
+        const items = this.friendsItems;
+        items[items.length - 3].destroy();
+        items[items.length - 2].destroy();
+        items[items.length - 1].destroy();
+        this.friendsItems = this.friendsItems.slice(0, -3);
+      }
+      if (document.documentElement.clientWidth > 600 && window.location.pathname.endsWith('our-pets') && this.friendsItems.length === 3) {
+        this.pushItems(3, 6);
+      }
+      if (document.documentElement.clientWidth > 768 && window.location.pathname.endsWith('our-pets') && this.friendsItems.length === 6) {
+        this.pushItems(6, 8);
+      }
+    });
   }
 
   pushItems(start, end) {
