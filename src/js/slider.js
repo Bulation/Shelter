@@ -17,7 +17,13 @@ export default class Slider extends Component {
     this.pathToImg = [Katrine, Jennifer, Woody, Sophia, Timmy, Charly, Scarlett, Freddie];
     this.friendsItems = [];
     this.count = itemsCount;
-    this.pushItems(0, this.count);
+    if (document.documentElement.clientWidth <= 600) {
+      this.pushItems(0, this.count - 5);
+    } else if (document.documentElement.clientWidth < 768) {
+      this.pushItems(0, this.count - 3);
+    } else {
+      this.pushItems(0, this.count);
+    }
     window.addEventListener('resize', () => {
       if (document.documentElement.clientWidth <= 768 && window.location.pathname.endsWith('our-pets')
         && this.friendsItems.length === 8) {
