@@ -47,3 +47,13 @@ h4 {
   letter-spacing: 0.06em;
   text-align: center;
 }
+.body_overlay:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--overlay-color);
+  z-index: 2;
+}
