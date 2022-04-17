@@ -53,7 +53,7 @@ export default class MainPage {
     this.arrowRight = new Component(this.arrowRightWrapper.node, 'span', 'friends-slider__arrow friends-slider__arrow_right', '');
     this.friendsLink = new Component(this.friendsContainer.node, 'a', 'btn friends__btn', 'Get to know the rest');
     this.friendsLink.node.href = '#';
-    this.friendsLink.node.onclick = () => this.onOurPets('/our-pets');
+    this.friendsLink.node.onclick = () => this.onOurPets('our-pets');
 
     this.help = new Component(this.main.node, 'section', 'help', '');
     this.help.node.id = 'help';
