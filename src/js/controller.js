@@ -7,11 +7,11 @@ export default class Controller {
     this.node = node;
     this.mainCycle();
     this.emitter = new EventEmitter();
-    this.emitter.subscribe('', () => {
+    this.emitter.subscribe('/', () => {
       this.main.destroy();
       this.mainCycle();
     });
-    this.emitter.subscribe('our-pets', () => {
+    this.emitter.subscribe('/our-pets', () => {
       this.main.destroy();
       this.petsCycle();
     });
@@ -22,6 +22,7 @@ export default class Controller {
     this.main.onOurPets = (path) => {
       this.main.destroy();
       this.onNavigate(path, { page: '/our-pets' });
+      this.petsCycle();
     };
   }
 
@@ -30,6 +31,7 @@ export default class Controller {
     this.main.onMainPage = (path) => {
       this.main.destroy();
       this.onNavigate(path, { page: '/' });
+      this.mainCycle();
     };
   }
 
@@ -40,8 +42,7 @@ export default class Controller {
       `./${pathname}`,
     );
     window.onpopstate = () => {
-      const arr = window.location.pathname.split('/');
-      this.emitter.emit(arr[arr.length-1]);
+      this.emitter.emit(window.location.pathname);
     };
   }
 }

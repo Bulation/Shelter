@@ -13,7 +13,9 @@ export default class OurPetsPage {
     this.header.headerContainer.node.classList.add('our-pets-header-container');
     this.header.title.node.classList.add('our-pets-logo__title');
     this.header.subtitle.node.classList.add('our-pets-logo__subtitle');
-    this.header.containerLogo.node.href = './#';
+    this.header.containerLogo.node.addEventListener('click', () => {
+      this.onMainPage('');
+    });
     this.header.navigation.listItems[0].link.node.onclick = () => {
       this.onMainPage('');
     };

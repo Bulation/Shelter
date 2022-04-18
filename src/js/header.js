@@ -6,7 +6,6 @@ export default class Header extends Component {
     super(parent, tagName, className, content);
     this.headerContainer = new Component(this.node, 'div', 'container header-container', '');
     this.containerLogo = new Component(this.headerContainer.node, 'a', 'logo', '');
-    this.containerLogo.node.href = '#';
     this.title = new Component(this.containerLogo.node, 'h1', 'logo__title', 'Cozy House');
     this.subtitle = new Component(this.containerLogo.node, 'p', 'logo__subtitle', 'Shelter for pets in Boston');
     this.navigation = new Navigation(this.headerContainer.node, 'nav', `navigation ${ourPetsClass}`, '', 4, ['About the shelter', 'Our pets', 'Help the shelter', 'Contacts'], ['#index.html', '#', '#help', '#footer']);
@@ -27,11 +26,11 @@ export default class Header extends Component {
         this.onBurger();
       }
     };
-    this.containerLogo.node.onclick = () => {
+    this.containerLogo.node.addEventListener('click', () => {
       if (this.burger.node.classList.contains('burger_active')) {
         this.onBurger();
       }
-    }
+    });
     window.addEventListener('resize', () => {
       if (document.documentElement.clientWidth >= 768 && this.burger.node.classList.contains('burger_active')) {
         this.onBurger();
