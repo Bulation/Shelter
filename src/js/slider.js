@@ -19,7 +19,7 @@ export default class Slider extends Component {
     this.count = itemsCount;
     if (document.documentElement.clientWidth <= 600 && window.location.pathname.endsWith('our-pets')) {
       this.pushItems(0, this.count - 5);
-    } else if (document.documentElement.clientWidth < 768 && window.location.pathname.endsWith('our-pets')) {
+    } else if (document.documentElement.clientWidth <= 768 && window.location.pathname.endsWith('our-pets')) {
       this.pushItems(0, this.count - 3);
     } else {
       this.pushItems(0, this.count);
