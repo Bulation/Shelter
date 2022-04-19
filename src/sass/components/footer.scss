@@ -22,6 +22,7 @@
 .footer-pet {
   @media screen and (max-width: 1279px) {
     margin: 0 auto;
+    width: 100%;
   }
   @media screen and (max-width: 767px) {
     padding: 0 20px;
@@ -29,6 +30,7 @@
   &__img {
     max-width: 100%;
     height: auto;
+    margin: 0 auto;
   }
 }
 .connection, .address {
