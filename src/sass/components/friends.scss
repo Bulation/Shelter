@@ -8,10 +8,10 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 80px 40px 100px;
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1279px) {
     padding: 80px 30px 100px;
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 767px) {
     padding: 42px 10px;
   }
 }
@@ -21,10 +21,10 @@
   justify-content: space-between;
   gap: 53px;
   padding: 60px 0 60px;
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1279px) {
     gap: 12px;
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 767px) {
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 42px 0;
@@ -34,7 +34,7 @@
 .friends-slider-container {
   flex-shrinK: 100;
   overflow: hidden;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 767px) {
     order: -1;
     width: 100%;
   }
@@ -43,7 +43,7 @@
   display: flex;
   gap: 90px;
   justify-content: space-between;
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1279px) {
     gap: 40px;
   }
 }
@@ -75,10 +75,10 @@
     box-shadow: 0px 2px 35px 14px #0D0D0D0A;
     background-color: var(--color-light-xl);
   }
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1279px) {
     width: calc(50% - 20px);
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 767px) {
     width: calc(100%);
   }
 }
@@ -194,11 +194,11 @@
   }
 }
 .our-pets-slider {
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1279px) {
     padding-top: 30px;
     padding-bottom: 40px;
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 767px) {
     padding: 42px 0;
   }
 }
@@ -206,27 +206,27 @@
   gap: 30px 40px;
   overflow: hidden;
   flex-wrap: wrap;
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1279px) {
     padding: 0 64px;
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 767px) {
     padding: 0 15px;
   }
 }
 .our-pets-friends-slider-item {
   width: calc(25% - 30px);
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1279px) {
     width: calc(50% - 20px);
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 767px) {
     width: calc(100%);
   }
 }
 .our-pets-friends-container {
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1279px) {
     padding-bottom: 76px;
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 767px) {
     padding-bottom: 42px;
   }
 }
