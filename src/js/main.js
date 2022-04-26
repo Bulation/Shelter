@@ -1,21 +1,11 @@
 import Component from './component';
-import Header from './header';
-import Footer from './footer';
 import Slider from './slider';
-import NotOnlyImg from '../assets/img/not-only-dog.png';
-import AboutImg from '../assets/img/about-pets.png';
-import DonateImg from '../assets/img/donate.png';
+import CardsModel from './cardsmodel';
 
 export default class MainPage {
   constructor(node) {
     this.node = node;
-    this.header = new Header(this.node, 'header', 'header', '');
-    this.header.navigation.addActiveClass(0);
-    this.header.navigation.listItems[1].link.node.onclick = () => {
-      this.onOurPets('our-pets');
-    };
-    this.main = new Component(this.node, 'main', '', '');
-    this.notOnly = new Component(this.main.node, 'section', 'not-only', '');
+    this.notOnly = new Component(this.node, 'section', 'not-only', '');
     this.notOnlyContainer = new Component(this.notOnly.node, 'div', 'container not-only-container', '');
     this.notOnlyDescription = new Component(this.notOnlyContainer.node, 'div', 'not-only__description', '');
     this.notOnlyTitle = new Component(this.notOnlyDescription.node, 'h2', 'not-only__title', 'Not only people need a house');
@@ -24,21 +14,21 @@ export default class MainPage {
     this.notOnlyBtn.node.href = '#friends';
     this.notOnlyImgContainer = new Component(this.notOnlyContainer.node, 'div', 'not-only__img-container', '');
     this.notOnlyImg = new Component(this.notOnlyImgContainer.node, 'img', 'not-only__pet-img', '');
-    this.notOnlyImg.node.src = NotOnlyImg;
+    this.notOnlyImg.node.src = 'not-only-dog.png';
     this.notOnlyImg.node.alt = 'White dog with red ears';
 
-    this.about = new Component(this.main.node, 'section', 'about', '');
+    this.about = new Component(this.node, 'section', 'about', '');
     this.aboutContainer = new Component(this.about.node, 'div', 'container about-container', '');
     this.aboutImgContainer = new Component(this.aboutContainer.node, 'div', 'about__img-container', '');
     this.aboutImg = new Component(this.aboutImgContainer.node, 'img', 'about__pets-img', '');
-    this.aboutImg.node.src = AboutImg;
+    this.aboutImg.node.src = 'about-pets.png';
     this.aboutImg.node.alt = 'Grey cat and white dog';
     this.aboutDescription = new Component(this.aboutContainer.node, 'div', 'about__description', '');
     this.aboutTitle = new Component(this.aboutDescription.node, 'h3', 'section-title about__title', 'About the shelter “Cozy House”');
     this.aboutTextFirst = new Component(this.aboutDescription.node, 'p', 'about__text about__text_mb-25', 'Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.');
     this.aboutTextSecond = new Component(this.aboutDescription.node, 'p', 'about__text', 'We feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.');
 
-    this.friends = new Component(this.main.node, 'section', 'friends', '');
+    this.friends = new Component(this.node, 'section', 'friends', '');
     this.friends.node.id = 'friends';
     this.friendsContainer = new Component(this.friends.node, 'div', 'friends-container', '');
     this.friendsTitle = new Component(this.friendsContainer.node, 'h3', 'section-title friends__title', '');
@@ -48,14 +38,106 @@ export default class MainPage {
     this.arrowLeftWrapper = new Component(this.friendsSlider.node, 'div', 'friends-slider__arrow-wrapper', '');
     this.arrowLeft = new Component(this.arrowLeftWrapper.node, 'span', 'friends-slider__arrow friends-slider__arrow_left', '');
     this.friendsSliderContainer = new Component(this.friendsSlider.node, 'div', 'friends-slider-container', '');
-    this.friendsSliderItems = new Slider(this.friendsSliderContainer.node, 'div', 'friends-slider-items', '', 3, ['Katrine', 'Jennifer', 'Woody'], ['Grey cat with black eyes', 'White small dog with yellow ears and black eyes', 'Yellow medium dog']);
+    this.friendsSliderItems = new Slider(this.friendsSliderContainer.node, 'div', 'friends-slider-items', '', 3);
+    const model = new CardsModel();
+    let itemsCount;
+    if (window.innerWidth <= 767) {
+      itemsCount = 1;
+    } else if (window.innerWidth <= 1279) {
+      itemsCount = 2;
+    } else if (window.innerWidth >= 1280) {
+      itemsCount = 3;
+    }
+    window.addEventListener('resize', () => {
+      if (window.innerWidth <= 767) {
+        itemsCount = 1;
+      }
+      if (window.innerWidth <= 1279) {
+        itemsCount = 2;
+      }
+      if (window.innerWidth >= 1280) {
+        itemsCount = 3;
+      }
+    })
+    model.onUpdate = (page) => {
+      this.arrowLeftWrapper.node.onclick = '';
+      this.arrowRightWrapper.node.onclick = '';
+      if (page > 0) {
+        this.friendsSliderItems.node.classList.add('transition-right');
+      } else {
+        this.friendsSliderItems.node.classList.add('transition-left');
+      }
+      this.friendsSliderItems.node.onanimationend = () => {
+        this.arrowLeftWrapper.node.onclick = () => {
+          model.setPage(-1);
+        };
+        this.arrowRightWrapper.node.onclick = () => {
+          model.setPage(1);
+        };
+        let changedItem;
+        if (page > 0) {
+          this.friendsSliderItems.node.classList.remove('transition-right');
+          changedItem = { ...this.friendsSliderItems.friendsItems[2] };
+          this.friendsSliderItems.friendsItems[1].node.innerHTML = '';
+          this.friendsSliderItems.friendsItems[1].node.append(...changedItem.node.children);
+          while (changedItem.node.children.length) {
+            changedItem.node.firstChild.remove();
+          }
+          const newItemsRight = model.setNewItems(model.randomData[2], itemsCount);
+          newItemsRight.forEach((el) => {
+            this.friendsSliderItems.pushItems(el, changedItem);
+          });
+          const newItemsLeft = model.setNewItems(model.randomData[2], itemsCount);
+          this.friendsSliderItems.friendsItems[0].node.innerHTML = '';
+          newItemsLeft.forEach((el) => {
+            this.friendsSliderItems.pushItems(el, this.friendsSliderItems.friendsItems[0]);
+          });
+          model.randomData[2] = newItemsRight.slice(0);
+          model.randomData[1] = model.randomData[2].slice(0);
+          model.randomData[0] = newItemsLeft.slice(0);
+        } else {
+          this.friendsSliderItems.node.classList.remove('transition-left');
+          changedItem = { ...this.friendsSliderItems.friendsItems[0] };
+          this.friendsSliderItems.friendsItems[1].node.innerHTML = '';
+          this.friendsSliderItems.friendsItems[1].node.append(...changedItem.node.children);
+          while (changedItem.node.children.length) {
+            changedItem.node.firstChild.remove();
+          }
+          const newItemsLeft = model.setNewItems(model.randomData[0], itemsCount);
+          newItemsLeft.forEach((el) => {
+            this.friendsSliderItems.pushItems(el, changedItem);
+          });
+          const newItemsRight = model.setNewItems(model.randomData[0], itemsCount);
+          this.friendsSliderItems.friendsItems[2].node.innerHTML = '';
+          newItemsRight.forEach((el) => {
+            this.friendsSliderItems.pushItems(el, this.friendsSliderItems.friendsItems[2]);
+          });
+          model.randomData[2] = newItemsRight.slice(0);
+          model.randomData[1] = model.randomData[0].slice(0);
+          model.randomData[0] = newItemsLeft.slice(0);
+        }
+      };
+    };
+    model.load(itemsCount);
+    model.randomData.forEach((arr) => {
+      const wrapper = new Component(this.friendsSliderItems.node, 'div', 'friends-slider-pet-wrapper', '');
+      arr.forEach((el) => {
+        this.friendsSliderItems.pushItems(el, wrapper);
+      });
+      this.friendsSliderItems.friendsItems.push(wrapper);
+    });
+    this.arrowLeftWrapper.node.onclick = () => {
+      model.setPage(-1);
+    };
     this.arrowRightWrapper = new Component(this.friendsSlider.node, 'div', 'friends-slider__arrow-wrapper', '');
     this.arrowRight = new Component(this.arrowRightWrapper.node, 'span', 'friends-slider__arrow friends-slider__arrow_right', '');
+    this.arrowRightWrapper.node.onclick = () => {
+      model.setPage(1);
+    };
     this.friendsLink = new Component(this.friendsContainer.node, 'a', 'btn friends__btn', 'Get to know the rest');
     this.friendsLink.node.href = '#';
-    this.friendsLink.node.onclick = () => this.onOurPets('our-pets');
-
-    this.help = new Component(this.main.node, 'section', 'help', '');
+    this.friendsLink.node.onclick = () => this.onOurPets();
+    this.help = new Component(this.node, 'section', 'help', '');
     this.help.node.id = 'help';
     this.helpContainer = new Component(this.help.node, 'div', 'help-container', '');
     this.helpTitle = new Component(this.helpContainer.node, 'h3', 'section-title help__title', 'How you can help our shelter');
@@ -70,11 +152,11 @@ export default class MainPage {
       this.helpItems.push(item);
     }
 
-    this.donate = new Component(this.main.node, 'section', 'donate', '');
+    this.donate = new Component(this.node, 'section', 'donate', '');
     this.donateContainer = new Component(this.donate.node, 'div', 'container donate-container', '');
     this.donatePetWrapper = new Component(this.donateContainer.node, 'div', 'donate-pet', '');
     this.donatePetImg = new Component(this.donatePetWrapper.node, 'img', 'donate-pet__img', '');
-    this.donatePetImg.node.src = DonateImg;
+    this.donatePetImg.node.src = 'donate.png';
     this.donatePetImg.node.alt = 'Yellow dog with black eyes lies';
     this.donateDescription = new Component(this.donateContainer.node, 'div', 'donate__description', '');
     this.donateTitle = new Component(this.donateDescription.node, 'h3', 'section-title donate__title', 'You can also make a donation');
@@ -82,12 +164,11 @@ export default class MainPage {
     this.donateLink = new Component(this.donateDescription.node, 'a', 'donate__link', '8380 2880 8028 8791 7435');
     this.donateLink.node.href = '#';
     this.donateInfo = new Component(this.donateDescription.node, 'p', 'donate__info', 'Legal information and lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices maximus tortor et vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus.');
-    this.footer = new Footer(this.node, 'footer', 'footer', '');
   }
 
   destroy() {
-    this.header.node.remove();
-    this.main.node.remove();
-    this.footer.node.remove();
+    while (this.node.children.length) {
+      this.node.removeChild(this.node.firstChild);
+    }
   }
 }

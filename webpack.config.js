@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
@@ -13,7 +14,6 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'bundle.[contenthash].js',
-    assetModuleFilename: '[hash][ext][query]',
     clean: true,
   },
   devServer: {
@@ -27,6 +27,11 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[contenthash].css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: './src/assets/img', to: '' },
+      ],
     }),
   ],
   optimization: {
@@ -54,9 +59,16 @@ module.exports = {
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|svg|webp)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: '[name][ext]',
+        },
       },
       {
         test: /\.(?:mp3|wav|ogg|mp4)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.json$/i,
         type: 'asset/resource',
       },
       {
@@ -66,7 +78,7 @@ module.exports = {
       {
         test: /\.scss$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           {
             loader: 'css-loader',
             options: {

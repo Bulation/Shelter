@@ -1,48 +1,55 @@
-import EventEmitter from './event';
 import MainPage from './main';
-import OurPetsPage from './ourpets';
+import Header from './header';
+import Component from './component';
+import Footer from './footer';
+import PetsPage from './ourpets';
 
 export default class Controller {
   constructor(node) {
     this.node = node;
-    this.mainCycle();
-    this.emitter = new EventEmitter();
-    this.emitter.subscribe('/', () => {
-      this.main.destroy();
+    this.header = new Header(this.node, 'header', 'header', '');
+    this.main = new Component(this.node, 'main', '', '');
+    this.footer = new Footer(this.node, 'footer', 'footer', '');
+    if (localStorage.getItem('page') === 'main') {
       this.mainCycle();
-    });
-    this.emitter.subscribe('/our-pets', () => {
-      this.main.destroy();
+    } else {
       this.petsCycle();
-    });
+    }
   }
 
   mainCycle() {
-    this.main = new MainPage(this.node);
-    this.main.onOurPets = (path) => {
-      this.main.destroy();
-      this.onNavigate(path, { page: '/our-pets' });
+    const mainPage = new MainPage(this.main.node);
+    localStorage.setItem('page', 'main');
+    this.header.navigation.removePetsClass();
+    this.header.navigation.addActiveClass(0);
+    this.header.removePetsClass();
+    this.header.navigation.listItems[1].link.node.onclick = () => {
+      mainPage.onOurPets();
+    };
+    mainPage.onOurPets = () => {
+      mainPage.destroy();
       this.petsCycle();
     };
   }
 
   petsCycle() {
-    this.main = new OurPetsPage(this.node);
-    this.main.onMainPage = (path) => {
-      this.main.destroy();
-      this.onNavigate(path, { page: '/' });
-      this.mainCycle();
+    localStorage.setItem('page', 'pets');
+    const petsPage = new PetsPage(this.main.node);
+    this.header.containerLogo.node.onclick = () => {
+      petsPage.onMainPage();
     };
-  }
-
-  onNavigate(pathname, state) {
-    window.history.pushState(
-      state,
-      pathname,
-      `./${pathname}`,
-    );
-    window.onpopstate = () => {
-      this.emitter.emit(window.location.pathname);
+    this.header.navigation.listItems[0].link.node.onclick = () => {
+      petsPage.onMainPage();
+    };
+    this.header.navigation.listItems[2].link.node.onclick = () => {
+      petsPage.onMainPage();
+    };
+    this.header.navigation.removeActiveClass();
+    this.header.navigation.addPetsClass(1);
+    this.header.addPetsClass();
+    petsPage.onMainPage = () => {
+      petsPage.destroy();
+      this.mainCycle();
     };
   }
 }

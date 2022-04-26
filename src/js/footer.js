@@ -1,5 +1,4 @@
 import Component from './component';
-import FooterPet from '../assets/img/footer-puppy.png';
 
 export default class Footer extends Component {
   constructor(parent, tagName, className, content) {
@@ -22,7 +21,7 @@ export default class Footer extends Component {
     this.locationSecond.node.href = 'https://goo.gl/maps/EjZwZZmJ36Jxsec96';
     this.footerPetWrapper = new Component(this.footerContainer.node, 'div', 'footer-pet', '');
     this.footerPetImg = new Component(this.footerPetWrapper.node, 'img', 'footer-pet__img', '');
-    this.footerPetImg.node.src = FooterPet;
+    this.footerPetImg.node.src = 'footer-puppy.png';
     this.footerPetImg.node.alt = 'Yellow dog shows its tongue';
   }
 }

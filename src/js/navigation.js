@@ -13,7 +13,9 @@ export default class Navigation extends Component {
   }
 
   addPetsClass(index) {
+    this.listItems[index].link.node.classList.add('navigation__link_active');
     this.listItems[index].link.node.classList.add('navigation__link_active-pets');
+    this.node.classList.add('our-pets-navigation');
     this.listItems.forEach((el) => {
       el.link.node.classList.add('navigation__link_pets');
     });
@@ -23,7 +25,9 @@ export default class Navigation extends Component {
     this.listItems.forEach((el) => {
       el.link.node.classList.remove('navigation__link_pets');
       el.link.node.classList.remove('navigation__link_active-pets');
+      el.link.node.classList.remove('navigation__link_active');
     });
+    this.node.classList.remove('our-pets-navigation');
   }
 
   addActiveClass(index) {

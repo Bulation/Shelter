@@ -10,4 +10,11 @@
   --color-primary-light: #FDDCC4;
   --color-dark-m: #B2B2B2;
   --overlay-color: #29292999;
+  --gap: 90px;
+}
+
+@media screen and (max-width: 1279px) {
+  :root {
+    --gap: 40px;
+  }
 }
