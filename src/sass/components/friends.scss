@@ -73,10 +73,17 @@
 }
 .friends-slider-pet-wrapper {
   display: flex;
+  flex-wrap: wrap;
   flex-shrink: 0;
   width: 100%;
   gap: var(--gap);
   justify-content: space-between;
+}
+.our-pets-slider {
+  overflow: hidden;
+}
+.our-pets-friends-slider-pet-wrapper {
+  gap: 40px;
 }
 .transition-left {
   animation-name: move-left;
@@ -207,7 +214,7 @@
     width: 52px;
     height: 52px;
     cursor: pointer;
-    &_back {
+    &_forbidden {
       color: var(--color-dark-s);
       border-color: var(--color-dark-s);
     }
@@ -215,7 +222,7 @@
       border: none;
       background-color: var(--color-primary);
     }
-    &_up {
+    &_permit {
       border-color: var(--color-primary);
       &:hover {
         background-color: var(--color-primary-light);
@@ -233,15 +240,10 @@
   }
 }
 .our-pets-friends-slider-items {
+  width: 100%;
   gap: 30px 40px;
-  overflow: hidden;
-  flex-wrap: wrap;
-  @media screen and (max-width: 1279px) {
-    padding: 0 64px;
-  }
-  @media screen and (max-width: 767px) {
-    padding: 0 15px;
-  }
+  transition: transform 0.3s ease-in;
+  transform: translate(0);
 }
 .our-pets-friends-slider-item {
   width: calc(25% - 30px);

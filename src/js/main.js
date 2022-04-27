@@ -39,7 +39,6 @@ export default class MainPage {
     this.arrowLeft = new Component(this.arrowLeftWrapper.node, 'span', 'friends-slider__arrow friends-slider__arrow_left', '');
     this.friendsSliderContainer = new Component(this.friendsSlider.node, 'div', 'friends-slider-container', '');
     this.friendsSliderItems = new Slider(this.friendsSliderContainer.node, 'div', 'friends-slider-items', '', 3);
-    const model = new CardsModel();
     let itemsCount;
     if (window.innerWidth <= 767) {
       itemsCount = 1;
@@ -48,17 +47,7 @@ export default class MainPage {
     } else if (window.innerWidth >= 1280) {
       itemsCount = 3;
     }
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= 767) {
-        itemsCount = 1;
-      }
-      if (window.innerWidth <= 1279) {
-        itemsCount = 2;
-      }
-      if (window.innerWidth >= 1280) {
-        itemsCount = 3;
-      }
-    })
+    const model = new CardsModel();
     model.onUpdate = (page) => {
       this.arrowLeftWrapper.node.onclick = '';
       this.arrowRightWrapper.node.onclick = '';
@@ -118,7 +107,8 @@ export default class MainPage {
         }
       };
     };
-    model.load(itemsCount);
+    model.load();
+    model.setRandomData(itemsCount, 3);
     model.randomData.forEach((arr) => {
       const wrapper = new Component(this.friendsSliderItems.node, 'div', 'friends-slider-pet-wrapper', '');
       arr.forEach((el) => {

@@ -2,6 +2,7 @@ import Card from './card';
 
 export default class CardsModel {
   constructor() {
+    this.page = 0;
     this.data = [
       {
         name: 'Jennifer',
@@ -155,14 +156,13 @@ export default class CardsModel {
     ];
   }
 
-  load(itemsCount) {
+  load() {
     this.data = this.data.map((item) => new Card(item));
-    this.setRandomData(itemsCount);
   }
 
-  setRandomData(itemsCount) {
+  setRandomData(itemsCount, pagesCount) {
     this.randomData = [];
-    for (let i = 0; i < 3; i += 1) {
+    for (let i = 0; i < pagesCount; i += 1) {
       this.randomData.push([]);
       for (let j = 0; j < itemsCount; j += 1) {
         let rand = this.getRandomNumber(7);
@@ -171,6 +171,34 @@ export default class CardsModel {
         }
         this.randomData[i].push(this.data[rand]);
       }
+    }
+  }
+
+  setRandomPaginationData(itemsCount, pagesCount) {
+    this.randomData = [];
+    for (let i = 0; i < pagesCount; i += 1) {
+      this.randomData.push([]);
+      for (let j = 0; j < itemsCount; j += 1) {
+        this.randomData[i].push(this.data[(i * itemsCount + j) % this.data.length]);
+      }
+    }
+    for (let i = 0; i < pagesCount; i += 1) {
+      let currentIndex = this.randomData[i].length;
+      let randomIndex;
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        [this.randomData[i][currentIndex], this.randomData[i][randomIndex]] = [
+          this.randomData[i][randomIndex], this.randomData[i][currentIndex]];
+      }
+    }
+    let currentIndex = this.randomData.length;
+    let randomIndex;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      [this.randomData[currentIndex], this.randomData[randomIndex]] = [
+        this.randomData[randomIndex], this.randomData[currentIndex]];
     }
   }
 
@@ -187,7 +215,7 @@ export default class CardsModel {
   }
 
   getRandomNumber(max) {
-    return Math.floor(Math.random() * max);
+    return Math.floor(Math.random() * (max + 1));
   }
 
   setPage(page) {
@@ -197,5 +225,9 @@ export default class CardsModel {
 
   getPage() {
     return this.page;
+  }
+
+  getPagesCount() {
+    return this.pagesCount;
   }
 }

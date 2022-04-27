@@ -5,7 +5,6 @@ import Popup from './popup';
 export default class Slider extends Component {
   constructor(parent, tagName, className, content, itemsCount) {
     super(parent, tagName, className, content);
-    this.pathToImg = ['katrine.png', 'jennifer.png', 'woody.png', 'sophia.png', 'timmy.png', 'charly.png', 'scarlett.png', 'freddie.png'];
     this.friendsItems = [];
     this.count = itemsCount;
   }

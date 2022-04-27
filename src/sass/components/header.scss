@@ -89,6 +89,7 @@
   }
   &_burgered {
     overflow-y: scroll;
+    overflow-x: hidden;
     display: block;
     -webkit-animation: navFromRight 0.3s ease-in;
     animation: navFromRight 0.3s ease-in;

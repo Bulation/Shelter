@@ -33,6 +33,5 @@ export default class SliderPagination extends Slider {
         this.friendsItems.forEach((item) => item.node.classList.add(`${ourPetsClass}`));
       }
     });
-    this.friendsItems.forEach((item) => item.node.classList.add(`${ourPetsClass}`));
   }
 }
