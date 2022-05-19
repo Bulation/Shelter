@@ -166,7 +166,8 @@ export default class CardsModel {
       this.randomData.push([]);
       for (let j = 0; j < itemsCount; j += 1) {
         let rand = this.getRandomNumber(7);
-        while (this.randomData[i].includes(this.data[rand]) || (i >= 1 && this.randomData[i - 1].includes(this.data[rand]))) {
+        while (this.randomData[i].includes(this.data[rand])
+        || (i >= 1 && this.randomData[i - 1].includes(this.data[rand]))) {
           rand = this.getRandomNumber(7);
         }
         this.randomData[i].push(this.data[rand]);
